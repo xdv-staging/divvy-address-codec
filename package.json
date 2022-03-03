@@ -1,7 +1,7 @@
 {
-  "name": "ripple-address-codec",
+  "name": "divvy-address-codec",
   "version": "4.1.3",
-  "description": "encodes/decodes base58 encoded XRP Ledger identifiers",
+  "description": "encodes/decodes base58 encoded XDV Ledger identifiers",
   "files": [
     "dist/*",
     "build/*"
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ripple/ripple-address-codec.git"
+    "url": "git://github.com/divvy/divvy-address-codec.git"
   },
   "prepublish": "tsc",
   "prepublishOnly": "tslint -p ./ && jest",

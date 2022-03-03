@@ -117,7 +117,7 @@ class Codec {
 }
 
 /**
- * XRP codec
+ * XDV codec
  */
 
 // Pure JavaScript hash functions in the browser, native hash functions in Node.js
@@ -135,12 +135,12 @@ const codecOptions = {
   sha256: function(bytes: Uint8Array) {
     return createHash('sha256').update(Buffer.from(bytes)).digest()
   },
-  alphabet: 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz'
+  alphabet: 'dpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcreCg65jkm8oFqi1tuvAxyz'
 }
 
-const codecWithXrpAlphabet = new Codec(codecOptions)
+const codecWithXdvAlphabet = new Codec(codecOptions)
 
-export const codec = codecWithXrpAlphabet
+export const codec = codecWithXdvAlphabet
 
 // entropy is a Buffer of size 16
 // type is 'ed25519' or 'secp256k1'
@@ -156,7 +156,7 @@ export function encodeSeed(entropy: Buffer, type: 'ed25519' | 'secp256k1'): stri
   }
 
   // prefixes entropy with version bytes
-  return codecWithXrpAlphabet.encode(entropy, opts)
+  return codecWithXdvAlphabet.encode(entropy, opts)
 }
 
 export function decodeSeed(seed: string, opts: {
@@ -168,41 +168,41 @@ export function decodeSeed(seed: string, opts: {
   versions: [ED25519_SEED, FAMILY_SEED],
   expectedLength: 16
 }) {
-  return codecWithXrpAlphabet.decode(seed, opts)
+  return codecWithXdvAlphabet.decode(seed, opts)
 }
 
 export function encodeAccountID(bytes: Buffer): string {
   const opts = {versions: [ACCOUNT_ID], expectedLength: 20}
-  return codecWithXrpAlphabet.encode(bytes, opts)
+  return codecWithXdvAlphabet.encode(bytes, opts)
 }
 
 export const encodeAddress = encodeAccountID
 
 export function decodeAccountID(accountId: string): Buffer {
   const opts = {versions: [ACCOUNT_ID], expectedLength: 20}
-  return codecWithXrpAlphabet.decode(accountId, opts).bytes
+  return codecWithXdvAlphabet.decode(accountId, opts).bytes
 }
 
 export const decodeAddress = decodeAccountID
 
 export function decodeNodePublic(base58string: string): Buffer {
   const opts = {versions: [NODE_PUBLIC], expectedLength: 33}
-  return codecWithXrpAlphabet.decode(base58string, opts).bytes
+  return codecWithXdvAlphabet.decode(base58string, opts).bytes
 }
 
 export function encodeNodePublic(bytes: Buffer): string {
   const opts = {versions: [NODE_PUBLIC], expectedLength: 33}
-  return codecWithXrpAlphabet.encode(bytes, opts)
+  return codecWithXdvAlphabet.encode(bytes, opts)
 }
 
 export function encodeAccountPublic(bytes: Buffer): string {
   const opts = {versions: [ACCOUNT_PUBLIC_KEY], expectedLength: 33}
-  return codecWithXrpAlphabet.encode(bytes, opts)
+  return codecWithXdvAlphabet.encode(bytes, opts)
 }
 
 export function decodeAccountPublic(base58string: string): Buffer {
   const opts = {versions: [ACCOUNT_PUBLIC_KEY], expectedLength: 33}
-  return codecWithXrpAlphabet.decode(base58string, opts).bytes
+  return codecWithXdvAlphabet.decode(base58string, opts).bytes
 }
 
 export function isValidClassicAddress(address: string): boolean {

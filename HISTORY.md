@@ -1,4 +1,4 @@
-# ripple-address-cod
+# divvy-address-cod
 
 ## 4.1.3 (2021-05-10)
 
